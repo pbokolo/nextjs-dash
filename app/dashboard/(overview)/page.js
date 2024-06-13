@@ -10,6 +10,7 @@ import {
 
 import { Suspense } from 'react';
 import { RevenueChartSkeleton } from '@/app/ui/skeletons';
+import { LatestInvoicesSkeleton } from '@/app/ui/skeletons';
 
 export default async function Page() {
   // const revenue = await fetchRevenue();
@@ -39,7 +40,9 @@ export default async function Page() {
         <Suspense fallback={<RevenueChartSkeleton />}>
           <RevenueChart />
         </Suspense>
-        <LatestInvoices latestInvoices={latestInvoices} />
+        <Suspense fallback={<LatestInvoicesSkeleton />}>
+          <LatestInvoices latestInvoices={latestInvoices} />
+        </Suspense>
       </div>
     </main>
   );
