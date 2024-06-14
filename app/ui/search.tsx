@@ -8,6 +8,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
 
   function handleSearch(term: string) {
     const params = new URLSearchParams(searchParams);
+    // Gets the current pathname i.e."/dashboard/invoices"
     const pathname = usePathname();
     const { replace } = useRouter();
 
@@ -16,6 +17,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
     } else {
       params.delete('query');
     }
+    // Updates the url with the user's search data
     replace(`${pathname}?${params.toString()}`);
   }
   return (
