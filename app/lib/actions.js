@@ -1,3 +1,4 @@
+// This will make all exported functions as server functions
 'use server';
 
 export async function createInvoice(formData) {
