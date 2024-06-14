@@ -5,12 +5,12 @@ import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 
 export default function Search({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
+  // Gets the current pathname i.e."/dashboard/invoices"
+  const pathname = usePathname();
+  const { replace } = useRouter();
 
   function handleSearch(term: string) {
     const params = new URLSearchParams(searchParams);
-    // Gets the current pathname i.e."/dashboard/invoices"
-    const pathname = usePathname();
-    const { replace } = useRouter();
 
     if (term) {
       params.set('query', term);
@@ -28,6 +28,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
       <input
         className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
         placeholder={placeholder}
+        defaultValue={searchParams.get('query')?.toString()}
         onChange={(e) => {
           handleSearch(e.target.value);
         }}
